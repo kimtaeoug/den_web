@@ -18,4 +18,5 @@ class SupportUI {
       ..layout();
     return textPainter.size;
   }
+
 }
