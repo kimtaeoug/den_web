@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
-import 'package:tunegem_io/pages/BreakPoint.dart';
+import 'package:tunegem_io/pages/break_point.dart';
 
 import 'common.dart';
 

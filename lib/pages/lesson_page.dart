@@ -5,7 +5,7 @@ import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/pages/common.dart';
 import 'package:tunegem_io/pages/end_container.dart';
 
-import 'BreakPoint.dart';
+import 'break_point.dart';
 
 class LessonPage extends StatelessWidget {
   LessonPage({Key? key}) : super(key: key);
