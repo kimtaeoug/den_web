@@ -5,6 +5,7 @@ import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/dot_indicator.dart';
 import 'package:tunegem_io/pages/analyzing_page.dart';
 import 'package:tunegem_io/pages/audition_page.dart';
+import 'package:tunegem_io/pages/break_point.dart';
 import 'package:tunegem_io/pages/intro_page.dart';
 import 'package:tunegem_io/pages/lesson_page.dart';
 import 'package:tunegem_io/pages/report_page.dart';
@@ -67,8 +68,8 @@ class _Structure extends State<Structure> {
               width: totalWidth,
               height: totalHeight,
               child: ListView.builder(
-                  itemExtent: totalWidth > 1024 ? Get.height : null,
-                  physics: totalWidth > 1024 ? const PageScrollPhysics() : null,
+                  itemExtent: totalWidth > BreakPoint.tablet ? Get.height : null,
+                  physics: totalWidth > BreakPoint.tablet ? const PageScrollPhysics() : null,
                   shrinkWrap: true,
                   itemCount: pageList.length,
                   itemBuilder: (context, idx) {

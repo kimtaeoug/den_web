@@ -41,7 +41,7 @@ class AuditionPage extends StatelessWidget {
     } else if(w > BreakPoint.tablet){
       return Center(
         child: SizedBox(
-          width: structureController.initWidth.value * 0.63,
+          width: structureController.initWidth.value,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: w * 60 /1440),
             child: Row(

@@ -111,7 +111,7 @@ class Common {
     );
   }
 
-  Widget infoItemFence(TextStyle style) {
+  Widget infoItemFence(TextStyle style, Color color) {
     return SizedBox(
       height: SupportUI.getTextSize('이', style).height,
       child: Padding(
@@ -121,7 +121,7 @@ class Common {
             width: 1,
             height: SupportUI.getTextSize('이', style).height*2/3,
             // height: const TextStyle(fontSize: 12).height,
-            color: const Color(0xff8E909B),
+            color: color,
             margin: const EdgeInsets.symmetric(horizontal: 14),
           ),
         ),

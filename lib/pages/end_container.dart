@@ -193,7 +193,7 @@ class EndContainer extends StatelessWidget {
               common.infoItemFence(GoogleFonts.notoSans(
                   fontWeight: FontWeight.w300,
                   fontSize: 12,
-                  color: const Color(0xff8E909B))),
+                  color: const Color(0xff8E909B)), const Color(0xff8E909B)),
               ceoNumber(fontSize)
             ],
           ),
@@ -207,7 +207,7 @@ class EndContainer extends StatelessWidget {
               common.infoItemFence(GoogleFonts.notoSans(
                   fontWeight: FontWeight.w300,
                   fontSize: 12,
-                  color: const Color(0xff8E909B))),
+                  color: const Color(0xff8E909B)), const Color(0xff8E909B)),
               companyNumber(fontSize)
             ],
           )
@@ -224,7 +224,7 @@ class EndContainer extends StatelessWidget {
               common.infoItemFence(GoogleFonts.notoSans(
                   fontWeight: FontWeight.w300,
                   fontSize: 12,
-                  color: const Color(0xff8E909B))),
+                  color: const Color(0xff8E909B)), const Color(0xff8E909B)),
               ceoNumber(fontSize)
             ],
           ),
@@ -240,17 +240,17 @@ class EndContainer extends StatelessWidget {
           common.infoItemFence(GoogleFonts.notoSans(
               fontWeight: FontWeight.w300,
               fontSize: 12,
-              color: const Color(0xff8E909B))),
+              color: const Color(0xff8E909B)), const Color(0xff8E909B)),
           ceoNumber(fontSize),
           common.infoItemFence(GoogleFonts.notoSans(
               fontWeight: FontWeight.w300,
               fontSize: 12,
-              color: const Color(0xff8E909B))),
+              color: const Color(0xff8E909B)), const Color(0xff8E909B)),
           email(fontSize),
           common.infoItemFence(GoogleFonts.notoSans(
               fontWeight: FontWeight.w300,
               fontSize: 12,
-              color: const Color(0xff8E909B))),
+              color: const Color(0xff8E909B)), const Color(0xff8E909B)),
           companyNumber(fontSize)
         ],
       );
@@ -336,12 +336,12 @@ class EndContainer extends StatelessWidget {
           '이용약관',
           style: termTextStyle,
         ),
-        common.infoItemFence(termTextStyle),
+        common.infoItemFence(termTextStyle, const Color(0xff8E909B)),
         Text(
           '개인정보처리방침',
           style: termTextStyle,
         ),
-        common.infoItemFence(termTextStyle),
+        common.infoItemFence(termTextStyle, const Color(0xff8E909B)),
         Text(
           '문의하기',
           style: termTextStyle,
