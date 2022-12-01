@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
+import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/common.dart';
 import 'package:tunegem_io/pages/end_container.dart';
 
@@ -226,7 +227,7 @@ class _LessonPage extends State<LessonPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'K-POP PLAYGROUND TUNEGEM',
+            bottomContainerTitle,
             style: GoogleFonts.notoSans(
                 color: Colors.white,
                 fontSize: titleFontSize,
@@ -234,8 +235,8 @@ class _LessonPage extends State<LessonPage> {
           ),
           Text(
             structureController.isKorean.value
-                ? '지금 시작해보세요!'
-                : 'Get started now!',
+                ? bottomContainerSubTitle
+                : bottomContainerSubTitleEn,
             style: GoogleFonts.notoSans(
                 color: Colors.white,
                 fontSize: subTitleFontSize,
@@ -250,8 +251,7 @@ class _LessonPage extends State<LessonPage> {
             children: [
               GestureDetector(
                 onTap: () {
-                  structureController.launchWeb(
-                      'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
+                  structureController.launchWeb(tunegemAppleUrl);
                 },
                 child: Image.asset(
                   'assets/images/app_store.png',
@@ -265,8 +265,7 @@ class _LessonPage extends State<LessonPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  structureController.launchWeb(
-                      'https://play.google.com/store/apps/details?id=com.vittio.tunegem');
+                  structureController.launchWeb(tunegemPlayStoreUrl);
                 },
                 child: Image.asset(
                   'assets/images/play_store.png',
@@ -291,11 +290,11 @@ class _LessonPage extends State<LessonPage> {
           child: FittedBox(
             child: common.textContent(
                 title: structureController.isKorean.value
-                    ? '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨'
-                    : 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
+                    ? lessonTitle
+                    : lessonTitleEn,
                 subTitle: structureController.isKorean.value
-                    ? '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'
-                    : 'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
+                    ? lessonSubTitle
+                    : lessonSubTitleEn),
           ),
         ),
       );
@@ -304,13 +303,15 @@ class _LessonPage extends State<LessonPage> {
         padding: EdgeInsets.symmetric(horizontal: w * 24 / 360),
         child: SizedBox(
           height: h * 207 / 843,
-          child: common.textContent(
-              title: structureController.isKorean.value
-                  ? '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨'
-                  : 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
-              subTitle: structureController.isKorean.value
-                  ? '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'
-                  : 'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
+          child: FittedBox(
+            child: common.textContent(
+                title: structureController.isKorean.value
+                    ? lessonTitle
+                    : lessonTitleEn,
+                subTitle: structureController.isKorean.value
+                    ? lessonSubTitle
+                    : lessonSubTitleEn),
+          ),
         ),
       );
     } else if (input == BreakPoint.tablet) {
@@ -321,11 +322,11 @@ class _LessonPage extends State<LessonPage> {
           child: FittedBox(
             child: common.textContent(
                 title: structureController.isKorean.value
-                    ? '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨'
-                    : 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
+                    ? lessonTitle
+                    : lessonTitleEn,
                 subTitle: structureController.isKorean.value
-                    ? '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'
-                    : 'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
+                    ? lessonSubTitle
+                    : lessonSubTitleEn),
           ),
         ),
       );
@@ -335,18 +336,18 @@ class _LessonPage extends State<LessonPage> {
               width: structureController.initWidth.value * 540 / 1920,
               child: FittedBox(
                 child: common.textContent(
-                    title: '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨',
-                    subTitle:
-                        '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.', isDeskTop: true),
+                    title: lessonTitle,
+                    subTitle: lessonSubTitle,
+                    isDeskTop: true),
               ),
             )
           : SizedBox(
               height: structureController.initHeight.value * 260 / 1080,
               child: FittedBox(
                 child: common.textContent(
-                    title: 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
-                    subTitle:
-                        'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!', isDeskTop: true),
+                    title: lessonTitleEn,
+                    subTitle: lessonSubTitleEn,
+                    isDeskTop: true),
               ),
             );
     }

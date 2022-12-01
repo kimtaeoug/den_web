@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
+import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/break_point.dart';
 import 'package:tunegem_io/pages/common.dart';
 
@@ -132,15 +133,16 @@ class AuditionPage extends StatelessWidget {
         child: FittedBox(
           child: common.textContent(
               title: structureController.isKorean.value
-                  ? '프리미엄 리포트를 활용해\n더욱 간편해진\n기획사 오디션 지원'
-                  : 'Simple applications\nfor an agency audition\nthrough Premium report',
+                  ? auditionTitle
+                  : auditionTitleEn,
               subTitle: structureController.isKorean.value
-                  ? '프리미엄 리포트를 분석 받고\nK-POP 기획사 오디션에 간편하게 지원해보세요'
-                  : 'Get Premium report\nand easily apply for a KPOP agency audition!',
+                  ? auditionSubTitle
+                  : auditionSubTitleEn,
               subTitle2: structureController.isKorean.value
-                  ? '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!'
-                  : 'More and more users have passed\nagency auditions through our service!',
-              textPadding2: 26, isDeskTop: true),
+                  ? auditionSubTitle2
+                  : auditionSubTitle2En,
+              textPadding2: 26,
+              isDeskTop: true),
         ),
       );
     } else {
@@ -158,14 +160,14 @@ class AuditionPage extends StatelessWidget {
         child: FittedBox(
           child: common.textContent(
               title: structureController.isKorean.value
-                  ? '프리미엄 리포트를 활용해\n더욱 간편해진\n기획사 오디션 지원'
-                  : 'Simple applications\nfor an agency audition\nthrough Premium report',
+                  ? auditionTitle
+                  : auditionTitleEn,
               subTitle: structureController.isKorean.value
-                  ? '프리미엄 리포트를 분석 받고\nK-POP 기획사 오디션에 간편하게 지원해보세요'
-                  : 'Get Premium report\nand easily apply for a KPOP agency audition!',
+                  ? auditionSubTitle
+                  : auditionSubTitleEn,
               subTitle2: structureController.isKorean.value
-                  ? '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!'
-                  : 'More and more users have passed\nagency auditions through our service!',
+                  ? auditionSubTitle2
+                  : auditionSubTitle2En,
               textPadding2: 26),
         ),
       );
@@ -184,7 +186,9 @@ class AuditionPage extends StatelessWidget {
     return SizedBox(
       height: height,
       child: Image.asset(
-        structureController.isKorean.value ? 'assets/images/content_4.png' : 'assets/images/content_4_en.png',
+        structureController.isKorean.value
+            ? 'assets/images/content_4.png'
+            : 'assets/images/content_4_en.png',
         fit: BoxFit.fitHeight,
       ),
     );

@@ -3,5 +3,5 @@ class BreakPoint{
   static double smallDeskTop = 1440;
   static double tablet = 1024;
   static double smallTablet = 600;
-  static double mobile = 360;
+  static double mobile = 480;
 }

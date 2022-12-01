@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
+import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/common.dart';
 
 import 'break_point.dart';
@@ -132,15 +133,16 @@ class ReportPage extends StatelessWidget {
         child: FittedBox(
           child: common.textContent(
               title: structureController.isKorean.value
-                  ? '보컬 분석 체계를 바탕으로 한\n프리미엄 리포트'
-                  : 'Premium Report based on\nVocal Analysis System',
+                  ? reportTitle
+                  : reportTitleEn,
               subTitle: structureController.isKorean.value
-                  ? '보컬 영역별 (음정, 템포, 호흡컨트롤, 리듬감, 고음 안정감,\n표현력) 상세분석, 성장 가능성, FMSO유형, 추천 K-POP\n소속사 등을 알고 싶다면 프리미엄 리포트를 확인해보세요!'
-                  : 'Use the Premium report based on the Vocal Analysis System!\nYou can receive professional analysis on critical areas, growth\npossibility, type of FMSO, and recommended KPOP\nentertainment company!',
+                  ? reportSubTitle
+                  : reportSubTitleEn,
               subTitle2: structureController.isKorean.value
-                  ? '보컬 분석 체계는 K-POP 전문 보컬 트레이너가\n15년 이상 연구한 내용을 바탕으로 만들어졌습니다.'
-                  : 'Our Vocal Analysis System is built by professional K-POP Vocal\nCoaches who have worked in this field for over 15 years.',
-              textPadding2: 26, isDeskTop: true),
+                  ? reportSubTitle2
+                  : reportSubTitle2En,
+              textPadding2: 26,
+              isDeskTop: true),
         ),
       );
     } else {
@@ -158,14 +160,14 @@ class ReportPage extends StatelessWidget {
         child: FittedBox(
           child: common.textContent(
               title: structureController.isKorean.value
-                  ? '보컬 분석 체계를 바탕으로 한\n프리미엄 리포트'
-                  : 'Premium Report based on\nVocal Analysis System',
+                  ? reportTitle
+                  : reportTitleEn,
               subTitle: structureController.isKorean.value
-                  ? '보컬 영역별 (음정, 템포, 호흡컨트롤, 리듬감, 고음 안정감,\n표현력) 상세분석, 성장 가능성, FMSO유형, 추천 K-POP\n소속사 등을 알고 싶다면 프리미엄 리포트를 확인해보세요!'
-                  : 'Use the Premium report based on the Vocal Analysis System!\nYou can receive professional analysis on critical areas, growth\npossibility, type of FMSO, and recommended KPOP\nentertainment company!',
+                  ? reportSubTitle
+                  : reportSubTitleEn,
               subTitle2: structureController.isKorean.value
-                  ? '보컬 분석 체계는 K-POP 전문 보컬 트레이너가\n15년 이상 연구한 내용을 바탕으로 만들어졌습니다.'
-                  : 'Our Vocal Analysis System is built by professional K-POP Vocal\nCoaches who have worked in this field for over 15 years.',
+                  ? reportSubTitle2
+                  : reportSubTitle2En,
               textPadding2: 26),
         ),
       );
@@ -184,7 +186,9 @@ class ReportPage extends StatelessWidget {
     return SizedBox(
       height: height,
       child: Image.asset(
-        structureController.isKorean.value ? 'assets/images/content_3.png' : 'assets/images/content_3_en.png',
+        structureController.isKorean.value
+            ? 'assets/images/content_3.png'
+            : 'assets/images/content_3_en.png',
         fit: BoxFit.fitHeight,
       ),
     );

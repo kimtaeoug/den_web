@@ -5,6 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
+import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/break_point.dart';
 import 'package:tunegem_io/pages/common.dart';
 
@@ -220,9 +221,9 @@ class IntroPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'All About\nKpop Vocal\nTUNEGEM',
-                style: TextStyle(
+              Text(
+                introTitle,
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 72,
@@ -233,8 +234,8 @@ class IntroPage extends StatelessWidget {
               ),
               Text(
                 structureController.isKorean.value
-                    ? '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지'
-                    : 'Vocal analysis and Report, application for\nan agency audition and even vocal lessons!',
+                    ? introSubTitle
+                    : introSubTitleEn,
                 style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -249,7 +250,7 @@ class IntroPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       structureController.launchWeb(
-                          'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
+                          tunegemAppleUrl);
                     },
                     child: Image.asset(
                       'assets/images/app_store.png',
@@ -264,7 +265,7 @@ class IntroPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       structureController.launchWeb(
-                          'https://play.google.com/store/apps/details?id=com.vittio.tunegem');
+                          tunegemPlayStoreUrl);
                     },
                     child: Image.asset(
                       'assets/images/play_store.png',
@@ -273,8 +274,6 @@ class IntroPage extends StatelessWidget {
                       filterQuality: FilterQuality.high,
                     ),
                   )
-
-                  //https://play.google.com/store/apps/details?id=com.vittio.tunegem
                 ],
               )
             ],
@@ -282,7 +281,6 @@ class IntroPage extends StatelessWidget {
         ),
       );
     } else if (input == BreakPoint.smallDeskTop) {
-      // w > 1100 ? structureController.initWidth.value * 501 / 1920 : structureController.initWidth.value * 451/1920,
       return SizedBox(
         width: w > 1200
             ? structureController.initWidth.value * 578 / 1920
@@ -292,9 +290,9 @@ class IntroPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'All About\nKpop Vocal\nTUNEGEM',
-                style: TextStyle(
+              Text(
+                introTitle,
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 72,
@@ -305,8 +303,8 @@ class IntroPage extends StatelessWidget {
               ),
               Text(
                 structureController.isKorean.value
-                    ? '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지'
-                    : 'Vocal analysis and Report, application for\nan agency audition and even vocal lessons!',
+                    ? introSubTitle
+                    : introSubTitleEn,
                 style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -355,9 +353,9 @@ class IntroPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'All About\nKpop Vocal\nTUNEGEM',
-                style: TextStyle(
+              Text(
+                introTitle,
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 72,
@@ -368,8 +366,8 @@ class IntroPage extends StatelessWidget {
               ),
               Text(
                 structureController.isKorean.value
-                    ? '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지'
-                    : 'Vocal analysis and Report, application for\nan agency audition and even vocal lessons!',
+                    ? introSubTitle
+                    : introSubTitleEn,
                 style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -384,7 +382,7 @@ class IntroPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       structureController.launchWeb(
-                          'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
+                          tunegemAppleUrl);
                     },
                     child: Image.asset(
                       'assets/images/app_store.png',
@@ -399,7 +397,7 @@ class IntroPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       structureController.launchWeb(
-                          'https://play.google.com/store/apps/details?id=com.vittio.tunegem');
+                          tunegemPlayStoreUrl);
                     },
                     child: Image.asset(
                       'assets/images/play_store.png',
@@ -417,11 +415,7 @@ class IntroPage extends StatelessWidget {
     }
   }
 
-  final Logger logger = Logger(
-    printer: PrettyPrinter()
-  );
   Widget rightContent(double w, double h, double input) {
-    logger.e('w : $w');
     if (input == BreakPoint.desktop || input == BreakPoint.smallDeskTop) {
       return SizedBox(
         width: w > 1200
