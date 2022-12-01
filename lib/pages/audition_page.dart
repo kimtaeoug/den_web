@@ -184,7 +184,7 @@ class AuditionPage extends StatelessWidget {
     return SizedBox(
       height: height,
       child: Image.asset(
-        'assets/images/content_4.png',
+        structureController.isKorean.value ? 'assets/images/content_4.png' : 'assets/images/content_4_en.png',
         fit: BoxFit.fitHeight,
       ),
     );

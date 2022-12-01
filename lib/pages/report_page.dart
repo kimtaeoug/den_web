@@ -184,7 +184,7 @@ class ReportPage extends StatelessWidget {
     return SizedBox(
       height: height,
       child: Image.asset(
-        'assets/images/content_3.png',
+        structureController.isKorean.value ? 'assets/images/content_3.png' : 'assets/images/content_3_en.png',
         fit: BoxFit.fitHeight,
       ),
     );

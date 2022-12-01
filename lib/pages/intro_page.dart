@@ -397,7 +397,7 @@ class IntroPage extends StatelessWidget {
       return SizedBox(
         width: w > 1200 ? structureController.initWidth.value * 501 / 1920 : w * 451/1440,
         child: Image.asset(
-          'assets/images/content_1.png',
+          structureController.isKorean.value ? 'assets/images/content_1.png' : 'assets/images/content_1_en.png',
           fit: BoxFit.fitWidth,
           filterQuality: FilterQuality.high,
         ),
@@ -414,7 +414,7 @@ class IntroPage extends StatelessWidget {
       return SizedBox(
         width: width,
         child: Image.asset(
-          'assets/images/content_1.png',
+          structureController.isKorean.value ? 'assets/images/content_1.png' : 'assets/images/content_1_en.png',
           fit: BoxFit.fitWidth,
           filterQuality: FilterQuality.high,
         ),

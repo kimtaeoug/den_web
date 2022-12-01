@@ -366,7 +366,9 @@ class _LessonPage extends State<LessonPage> {
     return SizedBox(
       height: height,
       child: Image.asset(
-        'assets/images/content_5.png',
+        structureController.isKorean.value
+            ? 'assets/images/content_5.png'
+            : 'assets/images/content_5_en.png',
         fit: BoxFit.fitHeight,
       ),
     );

@@ -181,7 +181,7 @@ class AnalyzingPage extends StatelessWidget {
     return SizedBox(
       height: height,
       child: Image.asset(
-        'assets/images/content_2.png',
+        structureController.isKorean.value ? 'assets/images/content_2.png' : 'assets/images/content_2_en.png',
         fit: BoxFit.fitHeight,
       ),
     );
