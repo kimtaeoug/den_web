@@ -3,9 +3,12 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/pages/break_point.dart';
 import 'package:tunegem_io/pages/common.dart';
+
+import 'intro_down_button.dart';
 
 class IntroPage extends StatelessWidget {
   IntroPage({Key? key}) : super(key: key);
@@ -38,7 +41,7 @@ class IntroPage extends StatelessWidget {
                       rightContent(w, h, BreakPoint.desktop)
                     ],
                   ),
-                  bottomWidget(h)
+                  IntroDownButton()
                 ],
               ),
             ),
@@ -68,7 +71,7 @@ class IntroPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    bottomWidget(h)
+                    IntroDownButton()
                   ],
                 ),
               ),
@@ -104,15 +107,15 @@ class IntroPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  topWidget(h, BreakPoint.tablet),
+                  topWidget(h, BreakPoint.smallTablet),
                   const SizedBox(
                     height: 75,
                   ),
-                  rightContent(w, h, BreakPoint.tablet),
+                  rightContent(w, h, BreakPoint.smallTablet),
                   const SizedBox(
                     height: 68,
                   ),
-                  leftContent(w, h, BreakPoint.tablet),
+                  leftContent(w, h, BreakPoint.smallTablet),
                   const SizedBox(
                     height: 174,
                   )
@@ -127,15 +130,15 @@ class IntroPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  topWidget(h, BreakPoint.tablet),
+                  topWidget(h, BreakPoint.mobile),
                   const SizedBox(
                     height: 34,
                   ),
-                  rightContent(w, h, BreakPoint.tablet),
+                  rightContent(w, h, BreakPoint.mobile),
                   const SizedBox(
                     height: 51,
                   ),
-                  leftContent(w, h, BreakPoint.tablet),
+                  leftContent(w, h, BreakPoint.mobile),
                   const SizedBox(
                     height: 45,
                   )
@@ -168,7 +171,7 @@ class IntroPage extends StatelessWidget {
     );
   }
 
-  Widget bottomWidget(double h) {
+  Widget bottomWidget() {
     return Padding(
       padding: EdgeInsets.only(
           bottom: structureController.initHeight.value * 32 / 1080),
@@ -413,9 +416,12 @@ class IntroPage extends StatelessWidget {
       );
     }
   }
-  
-  Widget rightContent(double w, double h, double input) {
 
+  final Logger logger = Logger(
+    printer: PrettyPrinter()
+  );
+  Widget rightContent(double w, double h, double input) {
+    logger.e('w : $w');
     if (input == BreakPoint.desktop || input == BreakPoint.smallDeskTop) {
       return SizedBox(
         width: w > 1200
@@ -434,9 +440,9 @@ class IntroPage extends StatelessWidget {
       if (input == BreakPoint.tablet) {
         width = w * 512 / 1024;
       } else if (input == BreakPoint.smallTablet) {
-        width = Get.width;
+        width = w * 476 / 601;
       } else {
-        width = Get.width;
+        width = w * 312 / 360;
       }
       return Stack(
         children: [
