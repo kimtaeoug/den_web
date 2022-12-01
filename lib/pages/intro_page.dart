@@ -55,7 +55,9 @@ class IntroPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 60),
               child: SizedBox(
-                width: w > 1200 ? structureController.initWidth.value * 0.63 : w * 12 /14,
+                width: w > 1200
+                    ? structureController.initWidth.value * 0.63
+                    : w * 12 / 14,
                 // width: structureController.initWidth.value < 1060
                 //     ? w * 1200 / 1440
                 //     : structureController.initWidth.value * 0.63,
@@ -64,7 +66,9 @@ class IntroPage extends StatelessWidget {
                   children: [
                     topWidget(h, BreakPoint.smallDeskTop),
                     SizedBox(
-                      width: w > 1200 ? structureController.initWidth.value * 0.63 : w * 12 /14,
+                      width: w > 1200
+                          ? structureController.initWidth.value * 0.63
+                          : w * 12 / 14,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -249,21 +253,38 @@ class IntroPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    'assets/images/app_store.png',
-                    width: 240,
-                    fit: BoxFit.fitWidth,
-                    filterQuality: FilterQuality.high,
+                  GestureDetector(
+                    onTap: () {
+                      logger.e('hey!');
+                      structureController.launchWeb(
+                          'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
+                    },
+                    child: Image.asset(
+                      'assets/images/app_store.png',
+                      width: 240,
+                      fit: BoxFit.fitWidth,
+                      filterQuality: FilterQuality.high,
+                    ),
                   ),
+
+                  //https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226
                   const SizedBox(
                     width: 24,
                   ),
-                  Image.asset(
-                    'assets/images/play_store.png',
-                    width: 240,
-                    fit: BoxFit.fitWidth,
-                    filterQuality: FilterQuality.high,
+                  GestureDetector(
+                    onTap: () {
+                      structureController.launchWeb(
+                          'https://play.google.com/store/apps/details?id=com.vittio.tunegem');
+                    },
+                    child: Image.asset(
+                      'assets/images/play_store.png',
+                      width: 240,
+                      fit: BoxFit.fitWidth,
+                      filterQuality: FilterQuality.high,
+                    ),
                   )
+
+                  //https://play.google.com/store/apps/details?id=com.vittio.tunegem
                 ],
               )
             ],
@@ -273,7 +294,9 @@ class IntroPage extends StatelessWidget {
     } else if (input == BreakPoint.smallDeskTop) {
       // w > 1100 ? structureController.initWidth.value * 501 / 1920 : structureController.initWidth.value * 451/1920,
       return SizedBox(
-        width: w > 1200 ? structureController.initWidth.value * 578 / 1920 : w * 578 / 1440,
+        width: w > 1200
+            ? structureController.initWidth.value * 578 / 1920
+            : w * 578 / 1440,
         child: FittedBox(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -368,20 +391,32 @@ class IntroPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    'assets/images/app_store.png',
-                    width: 240,
-                    fit: BoxFit.fitWidth,
-                    filterQuality: FilterQuality.high,
+                  GestureDetector(
+                    onTap: () {
+                      structureController.launchWeb(
+                          'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
+                    },
+                    child: Image.asset(
+                      'assets/images/app_store.png',
+                      width: 240,
+                      fit: BoxFit.fitWidth,
+                      filterQuality: FilterQuality.high,
+                    ),
                   ),
                   const SizedBox(
                     width: 24,
                   ),
-                  Image.asset(
-                    'assets/images/play_store.png',
-                    width: 240,
-                    fit: BoxFit.fitWidth,
-                    filterQuality: FilterQuality.high,
+                  GestureDetector(
+                    onTap: () {
+                      structureController.launchWeb(
+                          'https://play.google.com/store/apps/details?id=com.vittio.tunegem');
+                    },
+                    child: Image.asset(
+                      'assets/images/play_store.png',
+                      width: 240,
+                      fit: BoxFit.fitWidth,
+                      filterQuality: FilterQuality.high,
+                    ),
                   )
                 ],
               )
@@ -395,9 +430,13 @@ class IntroPage extends StatelessWidget {
   Widget rightContent(double w, double h, double input) {
     if (input == BreakPoint.desktop || input == BreakPoint.smallDeskTop) {
       return SizedBox(
-        width: w > 1200 ? structureController.initWidth.value * 501 / 1920 : w * 451/1440,
+        width: w > 1200
+            ? structureController.initWidth.value * 501 / 1920
+            : w * 451 / 1440,
         child: Image.asset(
-          structureController.isKorean.value ? 'assets/images/content_1.png' : 'assets/images/content_1_en.png',
+          structureController.isKorean.value
+              ? 'assets/images/content_1.png'
+              : 'assets/images/content_1_en.png',
           fit: BoxFit.fitWidth,
           filterQuality: FilterQuality.high,
         ),
@@ -411,13 +450,23 @@ class IntroPage extends StatelessWidget {
       } else {
         width = w * 312 / 360;
       }
-      return SizedBox(
-        width: width,
-        child: Image.asset(
-          structureController.isKorean.value ? 'assets/images/content_1.png' : 'assets/images/content_1_en.png',
-          fit: BoxFit.fitWidth,
-          filterQuality: FilterQuality.high,
-        ),
+      return Stack(
+        children: [
+          SizedBox(
+            width: width,
+            height: width * 742 / 617,
+          ),
+          SizedBox(
+            width: width,
+            child: Image.asset(
+              structureController.isKorean.value
+                  ? 'assets/images/content_1.png'
+                  : 'assets/images/content_1_en.png',
+              fit: BoxFit.fitWidth,
+              filterQuality: FilterQuality.high,
+            ),
+          )
+        ],
       );
     }
   }

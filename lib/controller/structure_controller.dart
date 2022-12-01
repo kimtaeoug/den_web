@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StructureController extends GetxController {
   RxDouble initWidth = 0.0.obs;
@@ -10,15 +11,22 @@ class StructureController extends GetxController {
   RxDouble indicatorOpacity = 1.0.obs;
 
   PageController? pageController = null;
-  void initPageController(PageController input){
+
+  void initPageController(PageController input) {
     pageController = input;
     update();
   }
-  void moveToPage(int idx){
-    if(pageController != null){
-      pageController?.animateToPage(idx, duration: const Duration(milliseconds: 500), curve: Curves.linear);
+
+  void moveToPage(int idx) {
+    if (pageController != null) {
+      pageController?.animateToPage(idx,
+          duration: const Duration(milliseconds: 500), curve: Curves.linear);
     }
   }
 
   RxBool isKorean = true.obs;
+
+  void launchWeb(String url) async {
+    await launchUrl(Uri.parse(url));
+  }
 }

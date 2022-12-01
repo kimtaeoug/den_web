@@ -303,23 +303,32 @@ class EndContainer extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Image.asset(
-          'assets/images/instagram.png',
-          height: 24,
-          fit: BoxFit.fitHeight,
+        GestureDetector(
+          onTap: (){
+            structureController.launchWeb(structureController.isKorean.value ? 'https://www.instagram.com/tunegem.official/' : 'https://www.instagram.com/tunegem.global/');
+          },
+          child: Image.asset(
+            'assets/images/instagram.png',
+            height: 24,
+            fit: BoxFit.fitHeight,
+          ),
         ),
         const SizedBox(
           width: 32,
         ),
-        Image.asset(
-          'assets/images/youtube.png',
-          height: 24,
-          fit: BoxFit.fitHeight,
+        GestureDetector(
+          onTap: (){
+            structureController.launchWeb('https://www.youtube.com/@tunegemofficial');
+          },
+          child: Image.asset(
+            'assets/images/youtube.png',
+            height: 24,
+            fit: BoxFit.fitHeight,
+          ),
         )
       ],
     );
   }
-
   final TextStyle termTextStyle = GoogleFonts.notoSans(
       color: const Color(0xff8E909B),
       fontSize: 14,

@@ -248,21 +248,31 @@ class _LessonPage extends State<LessonPage> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: buttonHeight,
+              GestureDetector(
+                onTap: () {
+                  structureController.launchWeb(
+                      'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
+                },
                 child: Image.asset(
                   'assets/images/app_store.png',
+                  height: buttonHeight,
                   fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
                 ),
               ),
               SizedBox(
                 width: buttonPadding,
               ),
-              SizedBox(
-                height: buttonHeight,
+              GestureDetector(
+                onTap: () {
+                  structureController.launchWeb(
+                      'https://play.google.com/store/apps/details?id=com.vittio.tunegem');
+                },
                 child: Image.asset(
                   'assets/images/play_store.png',
+                  height: buttonHeight,
                   fit: BoxFit.fitHeight,
+                  filterQuality: FilterQuality.high,
                 ),
               )
             ],
@@ -363,14 +373,18 @@ class _LessonPage extends State<LessonPage> {
     } else {
       height = structureController.initHeight.value * 765 / 1080;
     }
-    return SizedBox(
-      height: height,
-      child: Image.asset(
-        structureController.isKorean.value
-            ? 'assets/images/content_5.png'
-            : 'assets/images/content_5_en.png',
-        fit: BoxFit.fitHeight,
-      ),
+    return Stack(
+      children: [
+        SizedBox(
+          height: height,
+          child: Image.asset(
+            structureController.isKorean.value
+                ? 'assets/images/content_5.png'
+                : 'assets/images/content_5_en.png',
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+      ],
     );
   }
 }
