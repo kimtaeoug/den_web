@@ -7,8 +7,40 @@ import 'package:tunegem_io/pages/end_container.dart';
 
 import 'break_point.dart';
 
-class LessonPage extends StatelessWidget {
+class LessonPage extends StatefulWidget {
   LessonPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _LessonPage();
+}
+
+class _LessonPage extends State<LessonPage> {
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(scrollListener);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  final ScrollController scrollController = ScrollController();
+
+  void scrollListener() {
+    if (scrollController.hasClients) {
+      if (scrollController.position.pixels >
+              scrollController.position.maxScrollExtent - Get.height / 2 &&
+          scrollController.position.pixels <=
+              scrollController.position.maxScrollExtent) {
+        structureController.indicatorOpacity.value = 0;
+      } else {
+        structureController.indicatorOpacity.value = 1;
+      }
+    }
+  }
+
   final Common common = Common();
   double totalWidth = 0;
   double totalHeight = 0;
@@ -23,6 +55,7 @@ class LessonPage extends StatelessWidget {
         return SizedBox(
           width: structureController.initWidth.value,
           child: SingleChildScrollView(
+            controller: scrollController,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -46,7 +79,7 @@ class LessonPage extends StatelessWidget {
                               totalWidth, totalHeight, BreakPoint.desktop),
                           SizedBox(
                             height: structureController.initHeight.value *
-                                80 /
+                                78 /
                                 1080,
                           ),
                           Row(
@@ -182,7 +215,7 @@ class LessonPage extends StatelessWidget {
     } else {
       titleFontSize = 48;
       subTitleFontSize = 34;
-      centerPadding = 40;
+      centerPadding = structureController.isKorean.value ? 40 : 15;
       buttonPadding = 24;
       buttonHeight = 80;
     }
@@ -200,7 +233,9 @@ class LessonPage extends StatelessWidget {
                 fontWeight: FontWeight.w700),
           ),
           Text(
-            '지금 시작해보세요!',
+            structureController.isKorean.value
+                ? '지금 시작해보세요!'
+                : 'Get started now!',
             style: GoogleFonts.notoSans(
                 color: Colors.white,
                 fontSize: subTitleFontSize,
@@ -238,25 +273,19 @@ class LessonPage extends StatelessWidget {
   }
 
   Widget _deskTopTextWidget(double w, double h, double input) {
-    double height = structureController.initHeight.value * 236 / 1080;
-    if (input == BreakPoint.tablet) {
-      height = h * 231 / 1302;
-    } else if (input == BreakPoint.smallTablet) {
-      height = h * 300 / 1371;
-    } else if (input == BreakPoint.mobile) {
-      height = h * 207 / 843;
-    } else {
-      height = structureController.initHeight.value * 236 / 1080;
-    }
     if (input == BreakPoint.smallTablet) {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: w * 60 / 601),
         child: SizedBox(
-          height: height,
+          height: h * 300 / 1371,
           child: FittedBox(
             child: common.textContent(
-                title: '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨',
-                subTitle: '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'),
+                title: structureController.isKorean.value
+                    ? '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨'
+                    : 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
+                subTitle: structureController.isKorean.value
+                    ? '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'
+                    : 'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
           ),
         ),
       );
@@ -264,23 +293,52 @@ class LessonPage extends StatelessWidget {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: w * 24 / 360),
         child: SizedBox(
-          height: height,
+          height: h * 207 / 843,
+          child: common.textContent(
+              title: structureController.isKorean.value
+                  ? '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨'
+                  : 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
+              subTitle: structureController.isKorean.value
+                  ? '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'
+                  : 'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
+        ),
+      );
+    } else if (input == BreakPoint.tablet) {
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: w * 187 / 1024),
+        child: SizedBox(
+          height: h * 231 / 1302,
           child: FittedBox(
             child: common.textContent(
-                title: '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨',
-                subTitle: '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'),
+                title: structureController.isKorean.value
+                    ? '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨'
+                    : 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
+                subTitle: structureController.isKorean.value
+                    ? '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'
+                    : 'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
           ),
         ),
       );
     } else {
-      return SizedBox(
-        height: height,
-        child: FittedBox(
-          child: common.textContent(
-              title: '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨',
-              subTitle: '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'),
-        ),
-      );
+      return structureController.isKorean.value
+          ? SizedBox(
+              width: structureController.initWidth.value * 540 / 1920,
+              child: FittedBox(
+                child: common.textContent(
+                    title: '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨',
+                    subTitle:
+                        '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'),
+              ),
+            )
+          : SizedBox(
+              height: structureController.initHeight.value * 260 / 1080,
+              child: FittedBox(
+                child: common.textContent(
+                    title: 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
+                    subTitle:
+                        'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
+              ),
+            );
     }
   }
 

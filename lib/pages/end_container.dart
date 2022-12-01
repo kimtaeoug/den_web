@@ -149,26 +149,30 @@ class EndContainer extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.topLeft,
-          child: Text(
-            '케이팝팩토리 주식회사 (K-POP FACTORY CO.LTD)',
-            style: GoogleFonts.notoSans(
-                fontWeight: FontWeight.w700,
-                fontSize: fontSize,
-                color: Colors.white),
-          ),
+          child: Obx((){
+            return Text(
+              structureController.isKorean.value ? '케이팝팩토리 주식회사 (K-POP FACTORY CO.LTD)' : 'K-POP FACTORY CO.LTD',
+              style: GoogleFonts.notoSans(
+                  fontWeight: FontWeight.w700,
+                  fontSize: fontSize,
+                  color: Colors.white),
+            );
+          }),
         ),
         SizedBox(
           height: padding,
         ),
         Align(
           alignment: Alignment.topLeft,
-          child: Text(
-            '서울특별시 강남구 봉은사로 460, 5층 (삼성동, 금척타워)',
-            style: GoogleFonts.notoSans(
-                fontSize: fontSize,
-                fontWeight: FontWeight.w400,
-                color: Colors.white),
-          ),
+          child: Obx((){
+            return Text(
+              structureController.isKorean.value ? '서울특별시 강남구 봉은사로 460, 5층 (삼성동, 금척타워)' : 'K-POP FACTORY, 5F, Bongeunsa-ro 460, Gangnam-gu, Seoul, Republic of Korea (06154)',
+              style: GoogleFonts.notoSans(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
+            );
+          }),
         )
       ],
     );

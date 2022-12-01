@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:tunegem_io/controller/structure_controller.dart';
 
 class TunegemDotIndicator extends StatelessWidget {
   final int standardIdx;
@@ -22,6 +24,7 @@ class TunegemDotIndicator extends StatelessWidget {
       required this.animationDuration})
       : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,21 +35,25 @@ class TunegemDotIndicator extends StatelessWidget {
         children: List.generate(
             dotCount,
             (index) => Padding(
-                  padding: EdgeInsets.only(right: 8),
+                  padding: const EdgeInsets.only(right: 8),
                   child: _dot(index),
                 )),
       ),
     );
   }
+  final StructureController structureController = Get.find();
 
   Widget _dot(int idx) {
-    return AnimatedContainer(
-        width: idx == standardIdx ? activateDotWidth : dotWidth,
-        height: dotWidth,
-        curve: Curves.ease,
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: idx == standardIdx ? activateDotColor : baseDotColor),
-        duration: Duration(milliseconds: animationDuration));
+    return GestureDetector(
+      onTap: () => structureController.moveToPage(idx),
+      child: AnimatedContainer(
+          width: idx == standardIdx ? activateDotWidth : dotWidth,
+          height: dotWidth,
+          curve: Curves.ease,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: idx == standardIdx ? activateDotColor : baseDotColor),
+          duration: Duration(milliseconds: animationDuration)),
+    );
   }
 }

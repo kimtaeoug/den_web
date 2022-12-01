@@ -38,12 +38,12 @@ class AuditionPage extends StatelessWidget {
           ),
         ),
       );
-    } else if(w > BreakPoint.tablet){
+    } else if (w > BreakPoint.tablet) {
       return Center(
         child: SizedBox(
           width: structureController.initWidth.value,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: w * 60 /1440),
+            padding: EdgeInsets.symmetric(horizontal: w * 60 / 1440),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -54,7 +54,7 @@ class AuditionPage extends StatelessWidget {
           ),
         ),
       );
-    }else if (w > BreakPoint.smallTablet) {
+    } else if (w > BreakPoint.smallTablet) {
       return Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,9 +131,15 @@ class AuditionPage extends StatelessWidget {
         height: height,
         child: FittedBox(
           child: common.textContent(
-              title: '프리미엄 리포트를 활용해\n더욱 간편해진\n기획사 오디션 지원',
-              subTitle: '프리미엄 리포트를 분석 받고\nK-POP 기획사 오디션에 간편하게 지원해보세요',
-              subTitle2: '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!',
+              title: structureController.isKorean.value
+                  ? '프리미엄 리포트를 활용해\n더욱 간편해진\n기획사 오디션 지원'
+                  : 'Simple applications\nfor an agency audition\nthrough Premium report',
+              subTitle: structureController.isKorean.value
+                  ? '프리미엄 리포트를 분석 받고\nK-POP 기획사 오디션에 간편하게 지원해보세요'
+                  : 'Get Premium report\nand easily apply for a KPOP agency audition!',
+              subTitle2: structureController.isKorean.value
+                  ? '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!'
+                  : 'More and more users have passed\nagency auditions through our service!',
               textPadding2: 26),
         ),
       );
@@ -151,9 +157,15 @@ class AuditionPage extends StatelessWidget {
         height: height,
         child: FittedBox(
           child: common.textContent(
-              title: '프리미엄 리포트를 활용해\n더욱 간편해진\n기획사 오디션 지원',
-              subTitle: '프리미엄 리포트를 분석 받고\nK-POP 기획사 오디션에 간편하게 지원해보세요',
-              subTitle2: '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!',
+              title: structureController.isKorean.value
+                  ? '프리미엄 리포트를 활용해\n더욱 간편해진\n기획사 오디션 지원'
+                  : 'Simple applications\nfor an agency audition\nthrough Premium report',
+              subTitle: structureController.isKorean.value
+                  ? '프리미엄 리포트를 분석 받고\nK-POP 기획사 오디션에 간편하게 지원해보세요'
+                  : 'Get Premium report\nand easily apply for a KPOP agency audition!',
+              subTitle2: structureController.isKorean.value
+                  ? '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!'
+                  : 'More and more users have passed\nagency auditions through our service!',
               textPadding2: 26),
         ),
       );

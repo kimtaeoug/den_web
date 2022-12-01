@@ -134,9 +134,12 @@ class AnalyzingPage extends StatelessWidget {
         height: height,
         child: FittedBox(
           child: common.textContent(
-              title: 'KPOP 전문\n보컬 트레이너들에게 받는\n보컬 분석 ',
-              subTitle:
-                  '짧은 노래 영상을 올려보세요!\nSM, YG등 4대 기획사에서 아이돌 보컬 트레이닝을 담당한\n전문 보컬 트레이너들이 직접 분석한 리포트를 제공합니다',
+              title: structureController.isKorean.value
+                  ? 'KPOP 전문\n보컬 트레이너들에게 받는\n보컬 분석'
+                  : 'Special report from\nthe KPOP Vocal Coach\nGroup',
+              subTitle: structureController.isKorean.value
+                  ? '짧은 노래 영상을 올려보세요!\nSM, YG등 4대 기획사에서 아이돌 보컬 트레이닝을 담당한\n전문 보컬 트레이너들이 직접 분석한 리포트를 제공합니다'
+                  : 'Upload a short song video!\nThe K-POP Vocal Coach Group from the major\nentertainment in Korea gives you a vocal report!',
               textPadding: 32),
         ),
       );
@@ -154,9 +157,12 @@ class AnalyzingPage extends StatelessWidget {
         height: height,
         child: FittedBox(
           child: common.textContent(
-              title: 'KPOP 전문\n보컬 트레이너들에게 받는\n보컬 분석 ',
-              subTitle:
-                  '짧은 노래 영상을 올려보세요!\nSM, YG등 4대 기획사에서 아이돌 보컬 트레이닝을 담당한\n전문 보컬 트레이너들이 직접 분석한 리포트를 제공합니다',
+              title: structureController.isKorean.value
+                  ? 'KPOP 전문\n보컬 트레이너들에게 받는\n보컬 분석'
+                  : 'Special report from\nthe KPOP Vocal Coach\nGroup',
+              subTitle: structureController.isKorean.value
+                  ? '짧은 노래 영상을 올려보세요!\nSM, YG등 4대 기획사에서 아이돌 보컬 트레이닝을 담당한\n전문 보컬 트레이너들이 직접 분석한 리포트를 제공합니다'
+                  : 'Upload a short song video!\nThe K-POP Vocal Coach Group from the major\nentertainment in Korea gives you a vocal report!',
               textPadding: 32),
         ),
       );

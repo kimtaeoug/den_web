@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
@@ -24,9 +25,40 @@ class _Structure extends State<Structure> {
 
   @override
   void initState() {
+    super.initState();
     structureController.initWidth.value = Get.width;
     structureController.initHeight.value = Get.height;
-    super.initState();
+    structureController.initPageController(pageController);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    preLoadImages();
+  }
+
+  final List<String> imageList = [
+    'app_store',
+    'content_1',
+    'content_2',
+    'content_3',
+    'content_4',
+    'content_5',
+    'content_5_1',
+    'content_5_2',
+    'content_5_3',
+    'down_button',
+    'instagram',
+    'play_store',
+    'tunegem_logo',
+    'youtube'
+  ];
+
+  void preLoadImages() async {
+    for (int idx = 0; idx < imageList.length; idx++) {
+      await precacheImage(
+          AssetImage('assets/images/${imageList[idx]}.png'), context);
+    }
   }
 
   @override
@@ -41,9 +73,6 @@ class _Structure extends State<Structure> {
     AuditionPage(),
     LessonPage()
   ];
-
-  int pageIdx = 0;
-  final ScrollController scrollController = ScrollController();
 
   double totalWidth = 0;
   double totalHeight = 0;
@@ -67,31 +96,46 @@ class _Structure extends State<Structure> {
             SizedBox(
               width: totalWidth,
               height: totalHeight,
-              child: ListView.builder(
-                  itemExtent: totalWidth > BreakPoint.tablet ? Get.height : null,
-                  physics: totalWidth > BreakPoint.tablet ? const PageScrollPhysics() : null,
-                  shrinkWrap: true,
-                  itemCount: pageList.length,
-                  itemBuilder: (context, idx) {
-                    return pageList[idx];
-                  }),
+              child: totalWidth > BreakPoint.tablet
+                  ? PageView.builder(
+                      controller: pageController,
+                      itemCount: pageList.length,
+                      scrollDirection: Axis.vertical,
+                      onPageChanged: (idx) {
+                        structureController.nowPage.value = idx;
+                      },
+                      itemBuilder: (context, idx) {
+                        return pageList[idx];
+                      })
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: pageList.length,
+                      itemBuilder: (context, idx) {
+                        return pageList[idx];
+                      }),
             ),
-            totalWidth > 1440
+            totalWidth > BreakPoint.smallDeskTop
                 ? Positioned(
                     right: 56,
-                    child: TunegemDotIndicator(
-                        standardIdx: pageIdx,
-                        dotWidth: 15,
-                        activateDotWidth: 15,
-                        dotCount: pageList.length,
-                        baseDotColor: pageIdx == 0
-                            ? Colors.white.withOpacity(0.5)
-                            : const Color(0xffCDCDCD).withOpacity(0.5),
-                        activateDotColor: pageIdx == 0
-                            ? Colors.white
-                            : const Color(0xffCDCDCD),
-                        dotPadding: 15,
-                        animationDuration: 500))
+                    child: Obx(() {
+                      return Opacity(
+                        opacity: structureController.indicatorOpacity.value,
+                        child: TunegemDotIndicator(
+                            standardIdx: structureController.nowPage.value,
+                            dotWidth: 15,
+                            activateDotWidth: 15,
+                            dotCount: pageList.length,
+                            baseDotColor: structureController.nowPage.value == 0
+                                ? Colors.white.withOpacity(0.5)
+                                : const Color(0xffCDCDCD).withOpacity(0.5),
+                            activateDotColor:
+                                structureController.nowPage.value == 0
+                                    ? Colors.white
+                                    : const Color(0xffCDCDCD),
+                            dotPadding: 15,
+                            animationDuration: 500),
+                      );
+                    }))
                 : Container()
           ],
         ),

@@ -37,45 +37,41 @@ class IntroPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   topWidget(h, BreakPoint.desktop),
-                  SizedBox(
-                    width: structureController.initWidth.value * 0.63,
-                    child: FittedBox(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          leftContent(w, h, BreakPoint.desktop),
-                          rightContent(w, h, BreakPoint.desktop)
-                        ],
-                      ),
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      leftContent(w, h, BreakPoint.desktop),
+                      rightContent(w, h, BreakPoint.desktop)
+                    ],
                   ),
                   bottomWidget(h)
                 ],
               ),
             ),
           );
-        }else if (w > BreakPoint.tablet) {
+        } else if (w > BreakPoint.tablet) {
           return Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: w * 60 / 1440),
+              padding: EdgeInsets.symmetric(horizontal: 60),
               child: SizedBox(
-                width: structureController.initWidth.value < 1060 ?w*1200/1440 : structureController.initWidth.value * 0.63,
+                width: w > 1200 ? structureController.initWidth.value * 0.63 : w * 12 /14,
+                // width: structureController.initWidth.value < 1060
+                //     ? w * 1200 / 1440
+                //     : structureController.initWidth.value * 0.63,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    topWidget(h, BreakPoint.desktop),
+                    topWidget(h, BreakPoint.smallDeskTop),
                     SizedBox(
-                      width: structureController.initWidth.value < 1060 ?w *1200/1440 : structureController.initWidth.value * 0.63,
-                      child:FittedBox(
-                        child:  Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            leftContent(w, h, BreakPoint.desktop),
-                            rightContent(w, h, BreakPoint.desktop)
-                          ],
-                        ),
+                      width: w > 1200 ? structureController.initWidth.value * 0.63 : w * 12 /14,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          leftContent(w, h, BreakPoint.smallDeskTop),
+                          rightContent(w, h, BreakPoint.smallDeskTop)
+                        ],
                       ),
                     ),
                     bottomWidget(h)
@@ -92,11 +88,17 @@ class IntroPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   topWidget(h, BreakPoint.tablet),
-                  const SizedBox(height: 50,),
+                  const SizedBox(
+                    height: 50,
+                  ),
                   rightContent(w, h, BreakPoint.tablet),
-                  const SizedBox(height: 40,),
+                  const SizedBox(
+                    height: 40,
+                  ),
                   leftContent(w, h, BreakPoint.tablet),
-                  const SizedBox(height: 89,)
+                  const SizedBox(
+                    height: 89,
+                  )
                 ],
               ),
             ),
@@ -109,11 +111,17 @@ class IntroPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   topWidget(h, BreakPoint.tablet),
-                  const SizedBox(height: 75,),
+                  const SizedBox(
+                    height: 75,
+                  ),
                   rightContent(w, h, BreakPoint.tablet),
-                  const SizedBox(height: 68,),
+                  const SizedBox(
+                    height: 68,
+                  ),
                   leftContent(w, h, BreakPoint.tablet),
-                  const SizedBox(height: 174,)
+                  const SizedBox(
+                    height: 174,
+                  )
                 ],
               ),
             ),
@@ -126,11 +134,17 @@ class IntroPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   topWidget(h, BreakPoint.tablet),
-                  const SizedBox(height: 34,),
+                  const SizedBox(
+                    height: 34,
+                  ),
                   rightContent(w, h, BreakPoint.tablet),
-                  const SizedBox(height: 51,),
+                  const SizedBox(
+                    height: 51,
+                  ),
                   leftContent(w, h, BreakPoint.tablet),
-                  const SizedBox(height: 45,)
+                  const SizedBox(
+                    height: 45,
+                  )
                 ],
               ),
             ),
@@ -168,6 +182,7 @@ class IntroPage extends StatelessWidget {
         'assets/images/down_button.png',
         width: 24,
         fit: BoxFit.fitWidth,
+        filterQuality: FilterQuality.high,
       ),
     );
   }
@@ -175,18 +190,25 @@ class IntroPage extends StatelessWidget {
   TextStyle textStyle = GoogleFonts.notoSans(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700);
 
+  //isKorean
   Widget language() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'ENG',
-          style: textStyle,
+        GestureDetector(
+          onTap: () => structureController.isKorean.value = false,
+          child: Text(
+            'ENG',
+            style: textStyle,
+          ),
         ),
         common.infoItemFence(textStyle, Colors.white),
-        Text(
-          'KOR',
-          style: textStyle,
+        GestureDetector(
+          onTap: () => structureController.isKorean.value = true,
+          child: Text(
+            'KOR',
+            style: textStyle,
+          ),
         )
       ],
     );
@@ -195,7 +217,7 @@ class IntroPage extends StatelessWidget {
   Widget leftContent(double w, double h, double input) {
     if (input == BreakPoint.desktop) {
       return SizedBox(
-        height: structureController.initHeight.value * 480 / 1080,
+        width: structureController.initWidth.value * 578 / 1920,
         child: FittedBox(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -213,7 +235,9 @@ class IntroPage extends StatelessWidget {
                 height: h * 40 / 1080,
               ),
               Text(
-                '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지',
+                structureController.isKorean.value
+                    ? '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지'
+                    : 'Vocal analysis and Report, application for\nan agency audition and even vocal lessons!',
                 style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -229,6 +253,7 @@ class IntroPage extends StatelessWidget {
                     'assets/images/app_store.png',
                     width: 240,
                     fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
                   ),
                   const SizedBox(
                     width: 24,
@@ -237,6 +262,7 @@ class IntroPage extends StatelessWidget {
                     'assets/images/play_store.png',
                     width: 240,
                     fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
                   )
                 ],
               )
@@ -244,9 +270,10 @@ class IntroPage extends StatelessWidget {
           ),
         ),
       );
-    } else if(input == BreakPoint.smallDeskTop){
+    } else if (input == BreakPoint.smallDeskTop) {
+      // w > 1100 ? structureController.initWidth.value * 501 / 1920 : structureController.initWidth.value * 451/1920,
       return SizedBox(
-        height: structureController.initHeight.value * 450 / 1080,
+        width: w > 1200 ? structureController.initWidth.value * 578 / 1920 : w * 578 / 1440,
         child: FittedBox(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -264,7 +291,9 @@ class IntroPage extends StatelessWidget {
                 height: h * 40 / 1080,
               ),
               Text(
-                '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지',
+                structureController.isKorean.value
+                    ? '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지'
+                    : 'Vocal analysis and Report, application for\nan agency audition and even vocal lessons!',
                 style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -280,6 +309,7 @@ class IntroPage extends StatelessWidget {
                     'assets/images/app_store.png',
                     width: 240,
                     fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
                   ),
                   const SizedBox(
                     width: 24,
@@ -288,6 +318,7 @@ class IntroPage extends StatelessWidget {
                     'assets/images/play_store.png',
                     width: 240,
                     fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
                   )
                 ],
               )
@@ -295,7 +326,7 @@ class IntroPage extends StatelessWidget {
           ),
         ),
       );
-    }else {
+    } else {
       double width = w * 578 / 1024;
       if (input == BreakPoint.tablet) {
         width = w * 578 / 1024;
@@ -323,7 +354,9 @@ class IntroPage extends StatelessWidget {
                 height: h * 40 / 1080,
               ),
               Text(
-                '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지',
+                structureController.isKorean.value
+                    ? '보컬 분석 및 리포트, 기획사 오디션 지원, 보컬 레슨까지'
+                    : 'Vocal analysis and Report, application for\nan agency audition and even vocal lessons!',
                 style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -339,6 +372,7 @@ class IntroPage extends StatelessWidget {
                     'assets/images/app_store.png',
                     width: 240,
                     fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
                   ),
                   const SizedBox(
                     width: 24,
@@ -347,6 +381,7 @@ class IntroPage extends StatelessWidget {
                     'assets/images/play_store.png',
                     width: 240,
                     fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.high,
                   )
                 ],
               )
@@ -358,23 +393,16 @@ class IntroPage extends StatelessWidget {
   }
 
   Widget rightContent(double w, double h, double input) {
-    if (input == BreakPoint.desktop) {
+    if (input == BreakPoint.desktop || input == BreakPoint.smallDeskTop) {
       return SizedBox(
-        height: structureController.initHeight.value * 674 / 1080,
+        width: w > 1200 ? structureController.initWidth.value * 501 / 1920 : w * 451/1440,
         child: Image.asset(
           'assets/images/content_1.png',
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fitWidth,
+          filterQuality: FilterQuality.high,
         ),
       );
-    } else if (input == BreakPoint.smallDeskTop) {
-      return SizedBox(
-        height: structureController.initHeight.value * 634 / 1080,
-        child: Image.asset(
-          'assets/images/content_1.png',
-          fit: BoxFit.fitHeight,
-        ),
-      );
-    }else {
+    } else {
       double width = w * 512 / 1024;
       if (input == BreakPoint.tablet) {
         width = w * 512 / 1024;
@@ -388,6 +416,7 @@ class IntroPage extends StatelessWidget {
         child: Image.asset(
           'assets/images/content_1.png',
           fit: BoxFit.fitWidth,
+          filterQuality: FilterQuality.high,
         ),
       );
     }
