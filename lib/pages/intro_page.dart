@@ -3,8 +3,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logger/logger.dart';
-import 'package:tunegem_io/controller/intro_controller.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/pages/break_point.dart';
 import 'package:tunegem_io/pages/common.dart';
@@ -12,19 +10,14 @@ import 'package:tunegem_io/pages/common.dart';
 class IntroPage extends StatelessWidget {
   IntroPage({Key? key}) : super(key: key);
 
-  IntroController introController = Get.put(IntroController());
-
   final Common common = Common();
 
   final StructureController structureController = Get.find();
-
-  final Logger logger = Logger(printer: PrettyPrinter());
 
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
-    logger.e('w : $w');
     return Container(
       width: structureController.initWidth.value,
       color: const Color(0xffFC3A81),
@@ -58,9 +51,6 @@ class IntroPage extends StatelessWidget {
                 width: w > 1200
                     ? structureController.initWidth.value * 0.63
                     : w * 12 / 14,
-                // width: structureController.initWidth.value < 1060
-                //     ? w * 1200 / 1440
-                //     : structureController.initWidth.value * 0.63,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -255,7 +245,6 @@ class IntroPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      logger.e('hey!');
                       structureController.launchWeb(
                           'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226');
                     },
@@ -266,8 +255,6 @@ class IntroPage extends StatelessWidget {
                       filterQuality: FilterQuality.high,
                     ),
                   ),
-
-                  //https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226
                   const SizedBox(
                     width: 24,
                   ),
@@ -426,8 +413,9 @@ class IntroPage extends StatelessWidget {
       );
     }
   }
-
+  
   Widget rightContent(double w, double h, double input) {
+
     if (input == BreakPoint.desktop || input == BreakPoint.smallDeskTop) {
       return SizedBox(
         width: w > 1200
@@ -446,9 +434,9 @@ class IntroPage extends StatelessWidget {
       if (input == BreakPoint.tablet) {
         width = w * 512 / 1024;
       } else if (input == BreakPoint.smallTablet) {
-        width = w * 476 / 601;
+        width = Get.width;
       } else {
-        width = w * 312 / 360;
+        width = Get.width;
       }
       return Stack(
         children: [

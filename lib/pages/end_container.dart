@@ -149,9 +149,11 @@ class EndContainer extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.topLeft,
-          child: Obx((){
+          child: Obx(() {
             return Text(
-              structureController.isKorean.value ? '케이팝팩토리 주식회사 (K-POP FACTORY CO.LTD)' : 'K-POP FACTORY CO.LTD',
+              structureController.isKorean.value
+                  ? '케이팝팩토리 주식회사 (K-POP FACTORY CO.LTD)'
+                  : 'K-POP FACTORY CO.LTD',
               style: GoogleFonts.notoSans(
                   fontWeight: FontWeight.w700,
                   fontSize: fontSize,
@@ -164,9 +166,11 @@ class EndContainer extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.topLeft,
-          child: Obx((){
+          child: Obx(() {
             return Text(
-              structureController.isKorean.value ? '서울특별시 강남구 봉은사로 460, 5층 (삼성동, 금척타워)' : 'K-POP FACTORY, 5F, Bongeunsa-ro 460, Gangnam-gu, Seoul, Republic of Korea (06154)',
+              structureController.isKorean.value
+                  ? '서울특별시 강남구 봉은사로 460, 5층 (삼성동, 금척타워)'
+                  : 'K-POP FACTORY, 5F, Bongeunsa-ro 460, Gangnam-gu, Seoul, Republic of Korea (06154)',
               style: GoogleFonts.notoSans(
                   fontSize: fontSize,
                   fontWeight: FontWeight.w400,
@@ -194,26 +198,42 @@ class EndContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ceoText(fontSize),
-              common.infoItemFence(GoogleFonts.notoSans(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 12,
-                  color: const Color(0xff8E909B)), const Color(0xff8E909B)),
+              common.infoItemFence(
+                  GoogleFonts.notoSans(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                      color: const Color(0xff8E909B)),
+                  const Color(0xff8E909B)),
               ceoNumber(fontSize)
             ],
           ),
           const SizedBox(
             height: 5,
           ),
+           w > 500?
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               email(fontSize),
-              common.infoItemFence(GoogleFonts.notoSans(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 12,
-                  color: const Color(0xff8E909B)), const Color(0xff8E909B)),
+              common.infoItemFence(
+                  GoogleFonts.notoSans(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                      color: const Color(0xff8E909B)),
+                  const Color(0xff8E909B)),
               companyNumber(fontSize)
             ],
+          ) :
+          Align(
+            alignment: Alignment.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                email(fontSize),
+                companyNumber(fontSize)
+              ],
+            ),
           )
         ],
       );
@@ -225,10 +245,12 @@ class EndContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ceoText(fontSize),
-              common.infoItemFence(GoogleFonts.notoSans(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 12,
-                  color: const Color(0xff8E909B)), const Color(0xff8E909B)),
+              common.infoItemFence(
+                  GoogleFonts.notoSans(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                      color: const Color(0xff8E909B)),
+                  const Color(0xff8E909B)),
               ceoNumber(fontSize)
             ],
           ),
@@ -241,20 +263,26 @@ class EndContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ceoText(fontSize),
-          common.infoItemFence(GoogleFonts.notoSans(
-              fontWeight: FontWeight.w300,
-              fontSize: 12,
-              color: const Color(0xff8E909B)), const Color(0xff8E909B)),
+          common.infoItemFence(
+              GoogleFonts.notoSans(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 12,
+                  color: const Color(0xff8E909B)),
+              const Color(0xff8E909B)),
           ceoNumber(fontSize),
-          common.infoItemFence(GoogleFonts.notoSans(
-              fontWeight: FontWeight.w300,
-              fontSize: 12,
-              color: const Color(0xff8E909B)), const Color(0xff8E909B)),
+          common.infoItemFence(
+              GoogleFonts.notoSans(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 12,
+                  color: const Color(0xff8E909B)),
+              const Color(0xff8E909B)),
           email(fontSize),
-          common.infoItemFence(GoogleFonts.notoSans(
-              fontWeight: FontWeight.w300,
-              fontSize: 12,
-              color: const Color(0xff8E909B)), const Color(0xff8E909B)),
+          common.infoItemFence(
+              GoogleFonts.notoSans(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 12,
+                  color: const Color(0xff8E909B)),
+              const Color(0xff8E909B)),
           companyNumber(fontSize)
         ],
       );
@@ -304,8 +332,10 @@ class EndContainer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: (){
-            structureController.launchWeb(structureController.isKorean.value ? 'https://www.instagram.com/tunegem.official/' : 'https://www.instagram.com/tunegem.global/');
+          onTap: () {
+            structureController.launchWeb(structureController.isKorean.value
+                ? 'https://www.instagram.com/tunegem.official/'
+                : 'https://www.instagram.com/tunegem.global/');
           },
           child: Image.asset(
             'assets/images/instagram.png',
@@ -317,8 +347,9 @@ class EndContainer extends StatelessWidget {
           width: 32,
         ),
         GestureDetector(
-          onTap: (){
-            structureController.launchWeb('https://www.youtube.com/@tunegemofficial');
+          onTap: () {
+            structureController
+                .launchWeb('https://www.youtube.com/@tunegemofficial');
           },
           child: Image.asset(
             'assets/images/youtube.png',
@@ -329,6 +360,7 @@ class EndContainer extends StatelessWidget {
       ],
     );
   }
+
   final TextStyle termTextStyle = GoogleFonts.notoSans(
       color: const Color(0xff8E909B),
       fontSize: 14,

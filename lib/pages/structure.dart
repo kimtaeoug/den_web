@@ -95,6 +95,9 @@ class _Structure extends State<Structure> {
     if (totalHeight > structureController.initHeight.value) {
       structureController.initHeight.value = totalHeight;
     }
+    if(totalWidth < BreakPoint.tablet){
+      structureController.nowPage.value = 0;
+    }
     return Scaffold(
       body: SizedBox(
         width: totalWidth,
