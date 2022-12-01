@@ -49,7 +49,7 @@ class IntroPage extends StatelessWidget {
         } else if (w > BreakPoint.tablet) {
           return Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 60),
+              padding: const EdgeInsets.symmetric(horizontal: 60),
               child: SizedBox(
                 width: w > 1200
                     ? structureController.initWidth.value * 0.63

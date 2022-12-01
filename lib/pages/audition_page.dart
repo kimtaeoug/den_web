@@ -140,7 +140,7 @@ class AuditionPage extends StatelessWidget {
               subTitle2: structureController.isKorean.value
                   ? '튠잼 서비스를 통해 실제 K-POP 기획사 오디션에\n합격한 사용자가 점점 많아지고 있어요!'
                   : 'More and more users have passed\nagency auditions through our service!',
-              textPadding2: 26),
+              textPadding2: 26, isDeskTop: true),
         ),
       );
     } else {

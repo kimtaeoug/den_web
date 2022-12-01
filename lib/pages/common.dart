@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tunegem_io/support_ui.dart';
@@ -6,6 +7,7 @@ class Common {
   Widget textContent(
       {required String title,
       required String subTitle,
+      bool isDeskTop = false,
       bool isMobile = false,
       double titleFontSize = 48,
       double subTitleFontSize = 24,
@@ -15,16 +17,19 @@ class Common {
     double titleFontSize = 48;
     double subTitleFontSize = 24;
     double textPadding = 32;
-    if(isMobile == true){
+    if (isMobile == true) {
       titleFontSize = 32;
       subTitleFontSize = 16;
       textPadding = 16;
-    }else{
+    } else {
       titleFontSize = 48;
       subTitleFontSize = 24;
       textPadding = 32;
     }
-    return Column(
+    return FadeInUp(
+        delay: isDeskTop ? const Duration(milliseconds: 600) : const Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
+        child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +65,7 @@ class Common {
                     fontSize: subTitleFontSize))
             : Container()
       ],
-    );
+    ));
   }
 
   Widget logo() {
@@ -71,6 +76,7 @@ class Common {
           'assets/images/tunegem_logo.png',
           width: 30,
           fit: BoxFit.fitHeight,
+          filterQuality: FilterQuality.high,
         ),
         const SizedBox(
           width: 10,
@@ -85,16 +91,16 @@ class Common {
   }
 
   final TextStyle detailLabelTextStyle = GoogleFonts.notoSans(
-      fontWeight: FontWeight.w300, fontSize: 12, color: const Color(0xff8E909B)
-  );
+      fontWeight: FontWeight.w300,
+      fontSize: 12,
+      color: const Color(0xff8E909B));
   final TextStyle detailValueTextStyle = GoogleFonts.notoSans(
-      fontSize: 14, color: Colors.white, fontWeight: FontWeight.w400
-  );
+      fontSize: 14, color: Colors.white, fontWeight: FontWeight.w400);
+
   Widget infoItem(
       {required String label,
       required String content,
-      required double fontSize
-        }) {
+      required double fontSize}) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -119,7 +125,7 @@ class Common {
         child: Center(
           child: Container(
             width: 1,
-            height: SupportUI.getTextSize('이', style).height*2/3,
+            height: SupportUI.getTextSize('이', style).height * 2 / 3,
             // height: const TextStyle(fontSize: 12).height,
             color: color,
             margin: const EdgeInsets.symmetric(horizontal: 14),

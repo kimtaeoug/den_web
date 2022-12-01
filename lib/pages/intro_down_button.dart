@@ -26,6 +26,7 @@ class _IntroDownButton extends State<IntroDownButton>
 
   @override
   void dispose() {
+    animationController.dispose();
     super.dispose();
   }
 
@@ -89,7 +90,9 @@ class IntroDownButtonAnimation extends StatelessWidget {
           return SizedBox(
             height: 50.67,
             child: Align(
-              alignment: alignment.value == Alignment.center ? alignment2.value : alignment.value,
+              alignment: alignment.value == Alignment.center
+                  ? alignment2.value
+                  : alignment.value,
               child: Opacity(
                 opacity: opacity.value,
                 child: image,

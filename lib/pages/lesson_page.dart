@@ -337,7 +337,7 @@ class _LessonPage extends State<LessonPage> {
                 child: common.textContent(
                     title: '현직 아이돌 보컬 선생님에게\n직접 받는 KPOP 노래 레슨',
                     subTitle:
-                        '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.'),
+                        '검증된 KPOP 전문가 집단인 현직 아이돌 보컬 선생님에게\n직접 노래 레슨을 받아보세요.', isDeskTop: true),
               ),
             )
           : SizedBox(
@@ -346,7 +346,7 @@ class _LessonPage extends State<LessonPage> {
                 child: common.textContent(
                     title: 'KPOP Vocal Lessons\nfrom current IDOL Vocal\nCoach',
                     subTitle:
-                        'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!'),
+                        'Take KPOP Vocal lessons\nfrom current IDOL Vocal Coach!', isDeskTop: true),
               ),
             );
     }

@@ -140,7 +140,7 @@ class ReportPage extends StatelessWidget {
               subTitle2: structureController.isKorean.value
                   ? '보컬 분석 체계는 K-POP 전문 보컬 트레이너가\n15년 이상 연구한 내용을 바탕으로 만들어졌습니다.'
                   : 'Our Vocal Analysis System is built by professional K-POP Vocal\nCoaches who have worked in this field for over 15 years.',
-              textPadding2: 26),
+              textPadding2: 26, isDeskTop: true),
         ),
       );
     } else {
