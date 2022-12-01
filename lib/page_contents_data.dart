@@ -1,4 +1,7 @@
 
+String tunegemInstaUrl = 'https://www.instagram.com/tunegem.official';
+String tunegemInstaEnUrl = 'https://www.instagram.com/tunegem.global/';
+String tunegemYoutubeUrl = 'https://www.youtube.com/@tunegemofficial';
 String tunegemPlayStoreUrl = 'https://play.google.com/store/apps/details?id=com.vittio.tunegem';
 String tunegemAppleUrl = 'https://apps.apple.com/kr/app/tunegem-%EC%BC%80%EC%9D%B4%ED%8C%9D-%EB%85%B8%EB%9E%98-%ED%85%8C%EC%8A%A4%ED%8A%B8/id1572957226';
 

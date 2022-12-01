@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
+import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/break_point.dart';
 
 import 'common.dart';
@@ -64,27 +65,108 @@ class EndContainer extends StatelessWidget {
           ),
         ),
       );
+    } else if (input == BreakPoint.desktop) {
+      return Stack(
+        children: [
+          Container(
+            width:
+                input == BreakPoint.desktop || input == BreakPoint.smallDeskTop
+                    ? structureController.initWidth.value
+                    : totalWidth,
+            color: backColor,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: input == BreakPoint.desktop ||
+                          input == BreakPoint.smallDeskTop
+                      ? structureController.initHeight.value * 72 / 1080
+                      : totalHeight * 72 / 1302,
+                  horizontal: input == BreakPoint.desktop ||
+                          input == BreakPoint.smallDeskTop
+                      ? structureController.initWidth.value * 120 / 1920
+                      : totalWidth * 120 / 1024),
+              child: SizedBox(
+                width: input == BreakPoint.desktop ||
+                        input == BreakPoint.smallDeskTop
+                    ? structureController.initWidth.value * 1200 / 1920
+                    : totalWidth,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [common.logo(), termList()],
+                    ),
+                    SizedBox(
+                      height: input == BreakPoint.desktop ||
+                              input == BreakPoint.smallDeskTop
+                          ? structureController.initHeight.value * 32 / 1080
+                          : totalHeight * 34 / 1302,
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: companyInfo(),
+                    ),
+                    SizedBox(
+                      height: input == BreakPoint.desktop ||
+                              input == BreakPoint.smallDeskTop
+                          ? structureController.initHeight.value * 16 / 1080
+                          : totalHeight * 16 / 1302,
+                    ),
+                    companyDetailInfo(totalWidth, totalHeight),
+                    SizedBox(
+                      height: input == BreakPoint.desktop ||
+                              input == BreakPoint.smallDeskTop
+                          ? structureController.initHeight.value * 16 / 1080
+                          : totalHeight * 16 / 1302,
+                    ),
+                    copyRightText(),
+                    SizedBox(
+                      height: input == BreakPoint.desktop ||
+                              input == BreakPoint.smallDeskTop
+                          ? structureController.initHeight.value * 80 / 1080
+                          : totalHeight * 58 / 1302,
+                    ),
+                    iconList()
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+              right: 32,
+              bottom: 72,
+              child: GestureDetector(
+                onTap: (){
+                  structureController.moveToPage(0);
+                },
+                child: Image.asset(
+                  'assets/images/tothe_top_button.png',
+                  width: 48,
+                  fit: BoxFit.fitWidth,
+                ),
+              ))
+        ],
+      );
     } else {
       return Container(
-        width: input == BreakPoint.desktop || input == BreakPoint.smallDeskTop
+        width: input == BreakPoint.smallDeskTop
             ? structureController.initWidth.value
             : totalWidth,
         color: backColor,
         child: Padding(
           padding: EdgeInsets.symmetric(
-              vertical: input == BreakPoint.desktop ||
-                      input == BreakPoint.smallDeskTop
+              vertical: input == BreakPoint.smallDeskTop
                   ? structureController.initHeight.value * 72 / 1080
                   : totalHeight * 72 / 1302,
-              horizontal: input == BreakPoint.desktop ||
-                      input == BreakPoint.smallDeskTop
+              horizontal: input == BreakPoint.smallDeskTop
                   ? structureController.initWidth.value * 120 / 1920
                   : totalWidth * 120 / 1024),
           child: SizedBox(
-            width:
-                input == BreakPoint.desktop || input == BreakPoint.smallDeskTop
-                    ? structureController.initWidth.value * 1200 / 1920
-                    : totalWidth,
+            width: input == BreakPoint.smallDeskTop
+                ? structureController.initWidth.value * 1200 / 1920
+                : totalWidth,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -95,8 +177,7 @@ class EndContainer extends StatelessWidget {
                   children: [common.logo(), termList()],
                 ),
                 SizedBox(
-                  height: input == BreakPoint.desktop ||
-                          input == BreakPoint.smallDeskTop
+                  height: input == BreakPoint.smallDeskTop
                       ? structureController.initHeight.value * 32 / 1080
                       : totalHeight * 34 / 1302,
                 ),
@@ -105,22 +186,19 @@ class EndContainer extends StatelessWidget {
                   child: companyInfo(),
                 ),
                 SizedBox(
-                  height: input == BreakPoint.desktop ||
-                          input == BreakPoint.smallDeskTop
+                  height: input == BreakPoint.smallDeskTop
                       ? structureController.initHeight.value * 16 / 1080
                       : totalHeight * 16 / 1302,
                 ),
                 companyDetailInfo(totalWidth, totalHeight),
                 SizedBox(
-                  height: input == BreakPoint.desktop ||
-                          input == BreakPoint.smallDeskTop
+                  height: input == BreakPoint.smallDeskTop
                       ? structureController.initHeight.value * 16 / 1080
                       : totalHeight * 16 / 1302,
                 ),
                 copyRightText(),
                 SizedBox(
-                  height: input == BreakPoint.desktop ||
-                          input == BreakPoint.smallDeskTop
+                  height: input == BreakPoint.smallDeskTop
                       ? structureController.initHeight.value * 80 / 1080
                       : totalHeight * 58 / 1302,
                 ),
@@ -210,31 +288,28 @@ class EndContainer extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-           w > 500?
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              email(fontSize),
-              common.infoItemFence(
-                  GoogleFonts.notoSans(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 12,
-                      color: const Color(0xff8E909B)),
-                  const Color(0xff8E909B)),
-              companyNumber(fontSize)
-            ],
-          ) :
-          Align(
-            alignment: Alignment.topLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                email(fontSize),
-                companyNumber(fontSize)
-              ],
-            ),
-          )
+          w > 500
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    email(fontSize),
+                    common.infoItemFence(
+                        GoogleFonts.notoSans(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 12,
+                            color: const Color(0xff8E909B)),
+                        const Color(0xff8E909B)),
+                    companyNumber(fontSize)
+                  ],
+                )
+              : Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [email(fontSize), companyNumber(fontSize)],
+                  ),
+                )
         ],
       );
     } else if (input == BreakPoint.mobile) {
@@ -334,8 +409,8 @@ class EndContainer extends StatelessWidget {
         GestureDetector(
           onTap: () {
             structureController.launchWeb(structureController.isKorean.value
-                ? 'https://www.instagram.com/tunegem.official/'
-                : 'https://www.instagram.com/tunegem.global/');
+                ? tunegemInstaUrl
+                : tunegemInstaEnUrl);
           },
           child: Image.asset(
             'assets/images/instagram.png',
@@ -348,8 +423,7 @@ class EndContainer extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            structureController
-                .launchWeb('https://www.youtube.com/@tunegemofficial');
+            structureController.launchWeb(tunegemYoutubeUrl);
           },
           child: Image.asset(
             'assets/images/youtube.png',
