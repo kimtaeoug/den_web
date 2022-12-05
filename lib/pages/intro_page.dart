@@ -27,53 +27,58 @@ class IntroPage extends StatelessWidget {
       color: const Color(0xffFC3A81),
       child: Obx(() {
         if (w > BreakPoint.smallDeskTop) {
-          return Center(
-            child: SizedBox(
-              width: structureController.initWidth.value * 0.63,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  topWidget(h, BreakPoint.desktop),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      leftContent(w, h, BreakPoint.desktop),
-                      rightContent(w, h, BreakPoint.desktop)
-                    ],
-                  ),
-                  IntroDownButton()
-                ],
+          return SingleChildScrollView(
+            child: Center(
+              child: SizedBox(
+                width: structureController.initWidth.value * 0.63,
+                height: structureController.initHeight.value,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    topWidget(h, BreakPoint.desktop),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        leftContent(w, h, BreakPoint.desktop),
+                        rightContent(w, h, BreakPoint.desktop)
+                      ],
+                    ),
+                    IntroDownButton()
+                  ],
+                ),
               ),
             ),
           );
         } else if (w > BreakPoint.tablet) {
           return Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60),
-              child: SizedBox(
-                width: w > 1200
-                    ? structureController.initWidth.value * 0.63
-                    : w * 12 / 14,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    topWidget(h, BreakPoint.smallDeskTop),
-                    SizedBox(
-                      width: w > 1200
-                          ? structureController.initWidth.value * 0.63
-                          : w * 12 / 14,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          leftContent(w, h, BreakPoint.smallDeskTop),
-                          rightContent(w, h, BreakPoint.smallDeskTop)
-                        ],
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60),
+                child: SizedBox(
+                  width: w > 1200
+                      ? structureController.initWidth.value * 0.63
+                      : w * 12 / 14,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      topWidget(h, BreakPoint.smallDeskTop),
+                      SizedBox(
+                        width: w > 1200
+                            ? structureController.initWidth.value * 0.63
+                            : w * 12 / 14,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            leftContent(w, h, BreakPoint.smallDeskTop),
+                            rightContent(w, h, BreakPoint.smallDeskTop)
+                          ],
+                        ),
                       ),
-                    ),
-                    IntroDownButton()
-                  ],
+                      IntroDownButton()
+                    ],
+                  ),
                 ),
               ),
             ),

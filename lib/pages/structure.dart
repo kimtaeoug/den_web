@@ -94,6 +94,9 @@ class _Structure extends State<Structure> {
     }
     if (totalHeight > structureController.initHeight.value) {
       structureController.initHeight.value = totalHeight;
+      if(structureController.initHeight.value > 1080){
+        structureController.initHeight.value = structureController.initWidth.value * 1080 / 1920;
+      }
     }
     if(totalWidth < BreakPoint.tablet){
       structureController.nowPage.value = 0;
