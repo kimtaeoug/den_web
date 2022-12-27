@@ -40,7 +40,7 @@ class Common {
               fontFamily: 'nexon_b',
               color: const Color(0xffFC3A81),
               fontWeight: FontWeight.w500,
-              fontSize: titleFontSize),
+              fontSize: titleFontSize, height: 1.25),
         ),
         SizedBox(
           height: textPadding,
@@ -62,7 +62,7 @@ class Common {
                 style: GoogleFonts.notoSans(
                     color: const Color(0xff6D6D6D),
                     fontWeight: FontWeight.w400,
-                    fontSize: subTitleFontSize))
+                    fontSize: subTitleFontSize, height: 1.5),)
             : Container()
       ],
     ));

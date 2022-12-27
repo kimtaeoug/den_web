@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/break_point.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'common.dart';
 
@@ -138,7 +139,7 @@ class EndContainer extends StatelessWidget {
               right: 32,
               bottom: 72,
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   structureController.moveToPage(0);
                 },
                 child: Image.asset(
@@ -289,31 +290,41 @@ class EndContainer extends StatelessWidget {
             height: 5,
           ),
           w > 500
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    email(fontSize),
-                    common.infoItemFence(
-                        GoogleFonts.notoSans(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 12,
-                            color: const Color(0xff8E909B)),
-                        const Color(0xff8E909B)),
-                    companyNumber(fontSize)
-                  ],
-                )
+           ? Align(
+            alignment: Alignment.topLeft,
+            child: email(fontSize),
+          )
+              // ? Row(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       email(fontSize),
+              //       common.infoItemFence(
+              //           GoogleFonts.notoSans(
+              //               fontWeight: FontWeight.w300,
+              //               fontSize: 12,
+              //               color: const Color(0xff8E909B)),
+              //           const Color(0xff8E909B)),
+              //       companyNumber(fontSize)
+              //     ],
+              //   )
               : Align(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [email(fontSize), companyNumber(fontSize)],
-                  ),
-                )
+            alignment: Alignment.topLeft,
+            child: email(fontSize),
+          )
+              // : Align(
+              //     alignment: Alignment.topLeft,
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       mainAxisAlignment: MainAxisAlignment.start,
+              //       children: [email(fontSize), companyNumber(fontSize)],
+              //     ),
+              //   )
         ],
       );
     } else if (input == BreakPoint.mobile) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
@@ -330,7 +341,7 @@ class EndContainer extends StatelessWidget {
             ],
           ),
           email(fontSize),
-          companyNumber(fontSize)
+          // companyNumber(fontSize)
         ],
       );
     } else {
@@ -352,35 +363,47 @@ class EndContainer extends StatelessWidget {
                   color: const Color(0xff8E909B)),
               const Color(0xff8E909B)),
           email(fontSize),
-          common.infoItemFence(
-              GoogleFonts.notoSans(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 12,
-                  color: const Color(0xff8E909B)),
-              const Color(0xff8E909B)),
-          companyNumber(fontSize)
+          // common.infoItemFence(
+          //     GoogleFonts.notoSans(
+          //         fontWeight: FontWeight.w300,
+          //         fontSize: 12,
+          //         color: const Color(0xff8E909B)),
+          //     const Color(0xff8E909B)),
+          // companyNumber(fontSize)
         ],
       );
     }
   }
 
+  //structureController.isKorean.value
   Widget ceoText(double fontSize) {
-    return common.infoItem(label: '대표', content: '김민석', fontSize: fontSize);
+    return common.infoItem(
+        label: structureController.isKorean.value ? '대표' : 'CEO',
+        content: structureController.isKorean.value ? '김민석' : 'Kim, min-seok',
+        fontSize: fontSize);
   }
 
   Widget ceoNumber(double fontSize) {
     return common.infoItem(
-        label: '사업자등록번호', content: '121-86-42179', fontSize: fontSize);
+        label: structureController.isKorean.value
+            ? '사업자등록번호'
+            : 'Business Registration Number',
+        content: '121-86-42179',
+        fontSize: fontSize);
   }
 
   Widget email(double fontSize) {
     return common.infoItem(
-        label: '이메일', content: 'info@k-popfactory.com', fontSize: fontSize);
+        label: structureController.isKorean.value ? '이메일' : 'Contacts',
+        content: 'info@k-popfactory.com',
+        fontSize: fontSize);
   }
 
   Widget companyNumber(double fontSize) {
     return common.infoItem(
-        label: '대표번호', content: '02-3442-6227', fontSize: fontSize);
+        label: structureController.isKorean.value ? '대표번호' : 'TEL',
+        content: '02-3442-6227',
+        fontSize: fontSize);
   }
 
   final TextStyle copyRightTextStyle = GoogleFonts.notoSans(
@@ -451,20 +474,26 @@ class EndContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: alignment,
       children: [
-        Text(
-          '이용약관',
-          style: termTextStyle,
+        GestureDetector(
+          onTap: () => launchUrl(Uri.parse(structureController.isKorean.value ? 'https://www.tunegem.io/service_ko' : 'https://www.tunegem.io/service')),
+          child: Text(
+            structureController.isKorean.value ? '이용약관' : 'Terms of Service',
+            style: termTextStyle,
+          ),
         ),
         common.infoItemFence(termTextStyle, const Color(0xff8E909B)),
-        Text(
-          '개인정보처리방침',
-          style: termTextStyle,
+        GestureDetector(
+          onTap: () => launchUrl(Uri.parse(structureController.isKorean.value ? 'https://www.tunegem.io/policy_ko' : 'https://www.tunegem.io/policy')),
+          child: Text(
+            structureController.isKorean.value ? '개인정보처리방침' : 'Privacy Policy',
+            style: termTextStyle,
+          ),
         ),
-        common.infoItemFence(termTextStyle, const Color(0xff8E909B)),
-        Text(
-          '문의하기',
-          style: termTextStyle,
-        )
+        // common.infoItemFence(termTextStyle, const Color(0xff8E909B)),
+        // Text(
+        //   structureController.isKorean.value ? '문의하기' : 'Inquiry',
+        //   style: termTextStyle,
+        // )
       ],
     );
   }

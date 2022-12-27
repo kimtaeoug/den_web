@@ -101,7 +101,7 @@ class _Structure extends State<Structure> {
     if(totalWidth < BreakPoint.tablet){
       structureController.nowPage.value = 0;
     }
-    return Scaffold(
+    return SelectionArea(child: Scaffold(
       body: SizedBox(
         width: totalWidth,
         height: totalHeight,
@@ -112,48 +112,48 @@ class _Structure extends State<Structure> {
               height: totalHeight,
               child: totalWidth > BreakPoint.tablet
                   ? PageView.builder(
-                      controller: pageController,
-                      itemCount: pageList.length,
-                      scrollDirection: Axis.vertical,
-                      onPageChanged: (idx) {
-                        structureController.nowPage.value = idx;
-                      },
-                      itemBuilder: (context, idx) {
-                        return pageList[idx];
-                      })
+                  controller: pageController,
+                  itemCount: pageList.length,
+                  scrollDirection: Axis.vertical,
+                  onPageChanged: (idx) {
+                    structureController.nowPage.value = idx;
+                  },
+                  itemBuilder: (context, idx) {
+                    return pageList[idx];
+                  })
                   : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: pageList.length,
-                      itemBuilder: (context, idx) {
-                        return pageList[idx];
-                      }),
+                  shrinkWrap: true,
+                  itemCount: pageList.length,
+                  itemBuilder: (context, idx) {
+                    return pageList[idx];
+                  }),
             ),
             totalWidth > BreakPoint.smallDeskTop
                 ? Positioned(
-                    right: 56,
-                    child: Obx(() {
-                      return Opacity(
-                        opacity: structureController.indicatorOpacity.value,
-                        child: TunegemDotIndicator(
-                            standardIdx: structureController.nowPage.value,
-                            dotWidth: 15,
-                            activateDotWidth: 15,
-                            dotCount: pageList.length,
-                            baseDotColor: structureController.nowPage.value == 0
-                                ? Colors.white.withOpacity(0.5)
-                                : const Color(0xffCDCDCD).withOpacity(0.5),
-                            activateDotColor:
-                                structureController.nowPage.value == 0
-                                    ? Colors.white
-                                    : const Color(0xffCDCDCD),
-                            dotPadding: 15,
-                            animationDuration: 500),
-                      );
-                    }))
+                right: 56,
+                child: Obx(() {
+                  return Opacity(
+                    opacity: structureController.indicatorOpacity.value,
+                    child: TunegemDotIndicator(
+                        standardIdx: structureController.nowPage.value,
+                        dotWidth: 15,
+                        activateDotWidth: 15,
+                        dotCount: pageList.length,
+                        baseDotColor: structureController.nowPage.value == 0
+                            ? Colors.white.withOpacity(0.5)
+                            : const Color(0xffCDCDCD).withOpacity(0.5),
+                        activateDotColor:
+                        structureController.nowPage.value == 0
+                            ? Colors.white
+                            : const Color(0xffCDCDCD),
+                        dotPadding: 15,
+                        animationDuration: 500),
+                  );
+                }))
                 : Container()
           ],
         ),
       ),
-    );
+    ));
   }
 }
