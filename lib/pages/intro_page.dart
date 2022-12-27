@@ -1,17 +1,20 @@
+import 'dart:html' as html;
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/break_point.dart';
 import 'package:tunegem_io/pages/common.dart';
-
 import 'intro_down_button.dart';
 
-class IntroPage extends StatefulWidget{
+class IntroPage extends StatefulWidget {
   IntroPage({Key? key}) : super(key: key);
 
   @override
@@ -19,26 +22,37 @@ class IntroPage extends StatefulWidget{
 }
 
 class _IntroPage extends State<IntroPage> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
+
   @override
-  void didChangeDependencies(){
+  void didChangeDependencies() {
     preLoadImage();
     super.didChangeDependencies();
   }
+
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
   }
-  List<String> precacheList = ['app_store','play_store','down_button', 'content_1', 'content_1_en', 'tunegem_logo'];
-  void preLoadImage(){
-    precacheList.map((e){
+
+  List<String> precacheList = [
+    'app_store',
+    'play_store',
+    'down_button',
+    'content_1',
+    'content_1_en',
+    'tunegem_logo'
+  ];
+
+  void preLoadImage() {
+    precacheList.map((e) {
       precacheImage(AssetImage('assets/images/$e.png'), context);
     });
   }
+
   final Common common = Common();
 
   final StructureController structureController = Get.find();
@@ -197,7 +211,16 @@ class _IntroPage extends State<IntroPage> {
       padding: EdgeInsets.only(top: padding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [common.logo(), language()],
+        children: [
+          FadeInDown(
+              delay: const Duration(milliseconds: 600),
+              duration: const Duration(seconds: 1),
+              child: common.logo()),
+          FadeInDown(
+              delay: const Duration(milliseconds: 600),
+              duration: const Duration(seconds: 1),
+              child: language())
+        ],
       ),
     );
   }
@@ -218,13 +241,19 @@ class _IntroPage extends State<IntroPage> {
   TextStyle textStyle = GoogleFonts.notoSans(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700);
 
+  final Logger logger = Logger(
+    printer: PrettyPrinter()
+  );
   //isKorean
   Widget language() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: () => structureController.isKorean.value = false,
+          onTap: (){
+            structureController.isKorean.value = false;
+            structureController.changeToEn();
+          },
           child: Text(
             'ENG',
             style: textStyle,
@@ -232,7 +261,10 @@ class _IntroPage extends State<IntroPage> {
         ),
         common.infoItemFence(textStyle, Colors.white),
         GestureDetector(
-          onTap: () => structureController.isKorean.value = true,
+          onTap: () {
+            structureController.isKorean.value = true;
+            structureController.changeToKR();
+          },
           child: Text(
             'KOR',
             style: textStyle,
@@ -261,7 +293,8 @@ class _IntroPage extends State<IntroPage> {
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                       fontSize: 72,
-                      fontFamily: 'nexon_b',height: 1.2),
+                      fontFamily: 'nexon_b',
+                      height: 1.2),
                 ),
                 SizedBox(
                   height: h * 40 / 1080,
@@ -283,8 +316,7 @@ class _IntroPage extends State<IntroPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        structureController.launchWeb(
-                            tunegemAppleUrl);
+                        structureController.launchWeb(tunegemAppleUrl);
                       },
                       child: Image.asset(
                         'assets/images/app_store.png',
@@ -298,8 +330,7 @@ class _IntroPage extends State<IntroPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        structureController.launchWeb(
-                            tunegemPlayStoreUrl);
+                        structureController.launchWeb(tunegemPlayStoreUrl);
                       },
                       child: Image.asset(
                         'assets/images/play_store.png',
@@ -423,8 +454,7 @@ class _IntroPage extends State<IntroPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        structureController.launchWeb(
-                            tunegemAppleUrl);
+                        structureController.launchWeb(tunegemAppleUrl);
                       },
                       child: Image.asset(
                         'assets/images/app_store.png',
@@ -438,8 +468,7 @@ class _IntroPage extends State<IntroPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        structureController.launchWeb(
-                            tunegemPlayStoreUrl);
+                        structureController.launchWeb(tunegemPlayStoreUrl);
                       },
                       child: Image.asset(
                         'assets/images/play_store.png',
@@ -460,16 +489,20 @@ class _IntroPage extends State<IntroPage> {
 
   Widget rightContent(double w, double h, double input) {
     if (input == BreakPoint.desktop || input == BreakPoint.smallDeskTop) {
-      return SizedBox(
-        width: w > 1200
-            ? structureController.initWidth.value * 501 / 1920
-            : w * 451 / 1440,
-        child: Image.asset(
-          structureController.isKorean.value
-              ? 'assets/images/content_1.png'
-              : 'assets/images/content_1_en.png',
-          fit: BoxFit.fitWidth,
-          filterQuality: FilterQuality.high,
+      return FadeInUp(
+        delay: const Duration(milliseconds: 600),
+        duration: const Duration(seconds: 1),
+        child: SizedBox(
+          width: w > 1200
+              ? structureController.initWidth.value * 501 / 1920
+              : w * 451 / 1440,
+          child: Image.asset(
+            structureController.isKorean.value
+                ? 'assets/images/content_1.png'
+                : 'assets/images/content_1_en.png',
+            fit: BoxFit.fitWidth,
+            filterQuality: FilterQuality.high,
+          ),
         ),
       );
     } else {
@@ -487,16 +520,19 @@ class _IntroPage extends State<IntroPage> {
             width: width,
             height: width * 742 / 617,
           ),
-          SizedBox(
-            width: width,
-            child: Image.asset(
-              structureController.isKorean.value
-                  ? 'assets/images/content_1.png'
-                  : 'assets/images/content_1_en.png',
-              fit: BoxFit.fitWidth,
-              filterQuality: FilterQuality.high,
-            ),
-          )
+          FadeInUp(
+              delay: const Duration(milliseconds: 600),
+              duration: const Duration(seconds: 1),
+              child: SizedBox(
+                width: width,
+                child: Image.asset(
+                  structureController.isKorean.value
+                      ? 'assets/images/content_1.png'
+                      : 'assets/images/content_1_en.png',
+                  fit: BoxFit.fitWidth,
+                  filterQuality: FilterQuality.high,
+                ),
+              ))
         ],
       );
     }

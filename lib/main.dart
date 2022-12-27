@@ -5,8 +5,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tunegem_io/pages/structure.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-
-
 void main() {
   setPathUrlStrategy();
   runApp(const TunegemIO());
