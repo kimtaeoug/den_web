@@ -1,4 +1,3 @@
-import 'dart:html' as html;
 import 'dart:ui';
 
 import 'package:animate_do/animate_do.dart';
@@ -7,7 +6,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logger/logger.dart';
 import 'package:tunegem_io/controller/structure_controller.dart';
 import 'package:tunegem_io/page_contents_data.dart';
 import 'package:tunegem_io/pages/break_point.dart';
@@ -241,10 +239,6 @@ class _IntroPage extends State<IntroPage> {
   TextStyle textStyle = GoogleFonts.notoSans(
       color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700);
 
-  final Logger logger = Logger(
-    printer: PrettyPrinter()
-  );
-  //isKorean
   Widget language() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
