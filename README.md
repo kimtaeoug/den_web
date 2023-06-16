@@ -13,27 +13,27 @@
  <table>
    <tr>
       <td>
-         <img width="200px" src="./assets/1.png">
+         <img width="200px" src="./assets/images/1.png">
       </td>
       <td>
          <a href="https://tunegem.io/ ">
-         <img width="200px" src="./assets/2.png">
+         <img width="200px" src="./assets/images/2.png">
       </td>
       <td>
          <a href="https://tunegem.io/ ">
-         <img width="200px" src="./assets/3.png">
+         <img width="200px" src="./assets/images/3.png">
       </td>
       <td>
          <a href="https://tunegem.io/ ">
-         <img width="200px" src="./assets/4.png">
+         <img width="200px" src="./assets/images/4.png">
       </td>
       <td>
          <a href="https://tunegem.io/ ">
-         <img width="200px" src="./assets/5.png">
+         <img width="200px" src="./assets/images/5.png">
       </td>
       <td>
          <a href="https://tunegem.io/ ">
-         <img width="200px" src="./assets/6.png">
+         <img width="200px" src="./assets/images/6.png">
       </td>
    </tr>
  </table>  
