@@ -6,9 +6,9 @@
 ![Stack](https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white)
   
 ## 😀 프로젝트 소개  
-해당 프로젝트는 K-pop factory의 Web Page를 Flutter로 개발한 프로젝트입니다. 
+해당 프로젝트는 K-pop factory의 Web을 Flutter로 개발한 프로젝트입니다. 
   
-* _URL : https://tunegem.io/ _
+### WebPage : https://tunegem.io/ 
   
 ### Web 구조
 <details><summary>ApplicationTree</summary>
