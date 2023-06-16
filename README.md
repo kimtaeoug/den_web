@@ -40,6 +40,11 @@
    </tr>
  </table>  
  
+### 🧑‍💻 프로젝트내 담당 업무  
++ Flutter를 사용한 Web개발 
+ 
+### ⚙️ 기술 Stack  
+* 상태 관리 -> GeX
  
 ### Web 구조
 <details><summary>ApplicationTree</summary>
