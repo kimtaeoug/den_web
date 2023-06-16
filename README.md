@@ -1,19 +1,15 @@
-# tunegem_io
+<h1 align="left">Tunegem Web Project</h1>  
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div align="left">
+ 
+![Stack](https://img.shields.io/badge/flutter-02569B?style=for-the-badge&logo=Flutter&logoColor=white)
+![Stack](https://img.shields.io/badge/dart-0175C2?style=for-the-badge&logo=Dart&logoColor=white)
+  
+## 😀 프로젝트 소개  
+해당 프로젝트는 K-pop factory의 Web Page를 Flutter로 개발한 프로젝트입니다. 
+  
+* _URL : https://tunegem.io/ _
+  
 ### Web 구조
 <details><summary>ApplicationTree</summary>
 
